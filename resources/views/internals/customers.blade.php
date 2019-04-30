@@ -1,7 +1,11 @@
-<ul>
- @foreach ($values as $value)
+@extends('master')
 
-<li>{{ $value }}</li>
-     
- @endforeach
-</ul>
+@section('content')
+<ul>
+    @foreach ($values as $value)
+   
+   <li>{{ $value }}</li>
+        
+    @endforeach
+   </ul>
+@endsection
