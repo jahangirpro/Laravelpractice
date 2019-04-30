@@ -23,4 +23,6 @@ Route::get('/contact',function(){
     return view('contact');
 });
  
-Route::get('/customer','CustomerController@list');
+ Route::get('/customers','CustomerController@list')->name('list');
+ Route::post('/customers','CustomerController@create');
+  
