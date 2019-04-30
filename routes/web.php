@@ -22,22 +22,5 @@ Route::get('/about', function () {
 Route::get('/contact-us',function(){
     return view('contact');
 });
-Route::get('/customer',function(){
-
-    $keys = [
-        'Name',
-        'Addess',
-        'Phone',
-    ];
-
-    $values = [
-        'Momin',
-        'Sylhet',
-        '123-123-123',
-    ];
-
-    return view('internals.customers',[
-        'keys' => $keys,
-        'values' => $values,
-    ]);
-});
+ 
+Route::get('/customer','CustomerController@list');
