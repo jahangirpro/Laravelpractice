@@ -16,9 +16,28 @@ Route::get('/', function () {
 });
 
 Route::get('/about', function () {
-    return "About Us";
+    return view('about');
 });
 
 Route::get('/contact-us',function(){
-    return "Contact Us";
+    return view('contact');
+});
+Route::get('/customer',function(){
+
+    $keys = [
+        'Name',
+        'Addess',
+        'Phone',
+    ];
+
+    $values = [
+        'Momin',
+        'Sylhet',
+        '123-123-123',
+    ];
+
+    return view('internals.customers',[
+        'keys' => $keys,
+        'values' => $values,
+    ]);
 });
