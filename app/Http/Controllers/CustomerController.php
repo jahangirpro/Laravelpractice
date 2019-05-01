@@ -8,6 +8,12 @@ use App\Customers;
 class CustomerController extends Controller
 {
     public function create(Request $request){
+        //validation 
+        $customer = request()->validate([
+            'name' => 'required|min:5',
+            'email' => 'required|email|unique:customers',
+        ]);
+        // Insert data 
         $customer = New Customers;
         $customer->name = $request->name;
         $customer->email = $request->email;
