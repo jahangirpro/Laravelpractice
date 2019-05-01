@@ -1,5 +1,7 @@
 @extends('master')
-
+@section('title','Welcome')
 @section('content')
-    Welcome to my world 
+    <div class="container">
+        Home page 
+    </div>
 @endsection

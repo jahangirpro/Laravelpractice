@@ -10,7 +10,7 @@ class CustomerController extends Controller
     public function create(Request $request){
         //validation 
         $customer = request()->validate([
-            'name' => 'required|min:5',
+            'name' => 'required|min:4',
             'email' => 'required|email|unique:customers',
         ]);
         // Insert data 

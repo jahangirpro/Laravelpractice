@@ -1,5 +1,7 @@
 @extends('master')
-
+@section('title','About Us')
 @section('content')
-    about us
+   <div class="container">
+       About Page 
+   </div>
 @endsection

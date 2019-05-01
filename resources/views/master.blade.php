@@ -8,25 +8,11 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <title>@yield('title','Welcome to pactice session')</title>
   </head>
   <body>
-    <ul class="nav">
-        <li class="nav-item">
-        <a class="nav-link" href="{{'/'}}">Home</a>
-        </li>
-        <li class="nav-item">
-        <a class="nav-link" href="{{ '/about' }}">About</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ '/contact' }}">Contact</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ '/customers' }}">Customer List</a>
-        </li>
-
-    </ul>
     <div class="container">
+        @include('partials.nav')
         @yield('content')
     </div>
 
