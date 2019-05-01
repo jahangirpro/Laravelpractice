@@ -14,22 +14,16 @@ class CustomerController extends Controller
             'email' => 'required|email|unique:customers',
             'active' => 'required'
         ]);
-        // Insert data 
-        $customer = New Customers;
-        $customer->name = $request->name;
-        $customer->email = $request->email;
-        $customer->active = $request->active;
-        $customer->save();
 
-        // return redirect()->route('list');
+        Customers::create($customer); // Must be used protected fillable in this class of guarded
         return back();
 
     }
     public function list(){
         
-        $ActiveCustomers = Customers::where('active','1')->get();
-        $InactiveCustomers = Customers::where('active','0')->get();
-        $ParttimeCustomers = Customers::where('active','2')->get();
+        $ActiveCustomers = Customers::Active()->get();
+        $InactiveCustomers = Customers::Inactive()->get();
+        $ParttimeCustomers = Customers::Parttime()->get();
         // $customers = Customers::all();
         return view('internals.customers',compact('ActiveCustomers','InactiveCustomers','ParttimeCustomers'));
     }
