@@ -15,16 +15,52 @@
         <input  type="text" class="form-control" name="email" value="{{ old('email')}}" id="exampleInputPassword1" placeholder="Email">
           {{ $errors->first('email')}}
         </div>
+        <div class="form-group" >
+          <label for="active">Status</label>
+            <select name="active" class="custom-select" required>
+              <option value="" disabled>Select from here</option>
+              <option value="1">Active</option>
+              <option value="0">Inactive</option>
+              <option value="2">Part time</option>
+            </select>
+        </div>
          
         <button type="submit" class="btn btn-primary">Submit</button>
  </form>
 
-
+ <div class="row">
+   <div class="col-4">
+     <h3>Active Customers </h3>
       <ul>
-        @foreach ($customers as $customer)
-                <li>Name : {{ $customer->name }} <span class="text-muted">({{ $customer->email }})</span> </li>
-        @endforeach  
-        
-      </ul>
+          @foreach ($ActiveCustomers as $activecustomer)
+                  <li>Name : {{ $activecustomer->name }} <span class="text-muted">({{ $activecustomer->email }})</span> </li>
+          @endforeach  
+          
+        </ul>
+   </div>
+
+   <div class="col-4">
+     <h3>Inactive Customers</h3>
+      <ul>
+          @foreach ($InactiveCustomers as $inactivecustomer)
+                  <li>Name : {{ $inactivecustomer->name }} <span class="text-muted">({{ $inactivecustomer->email }})</span> </li>
+          @endforeach  
+          
+        </ul>
+   </div>
+
+
+   <div class="col-4">
+     <h3>Part time Customers </h3>
+      <ul>
+          @foreach ($ParttimeCustomers as $parttimecustomer)
+                  <li>Name : {{ $parttimecustomer->name }} <span class="text-muted">({{ $parttimecustomer->email }})</span> </li>
+          @endforeach  
+          
+        </ul>
+   </div>
+ </div>
+
+      
 </div>
 @endsection
