@@ -25,6 +25,16 @@
             </select>
         </div>
          
+        <div class="form-group" >
+          <label for="active">Company Name</label>
+            <select name="company_id" class="custom-select" required>
+              <option value="" disabled>Select from here</option>
+              @foreach ($companies as $company)
+              
+              <option value="{{ $company->id }}">{{ $company->name }} </option>
+              @endforeach
+            </select>
+        </div>
         <button type="submit" class="btn btn-primary">Submit</button>
  </form>
 
@@ -33,7 +43,7 @@
      <h3>Active Customers </h3>
       <ul>
           @foreach ($ActiveCustomers as $activecustomer)
-                  <li>Name : {{ $activecustomer->name }} <span class="text-muted">({{ $activecustomer->email }})</span> </li>
+                  <li>Name : {{ $activecustomer->name }} <span class="text-muted">({{ $activecustomer->company->name }})</span> </li>
           @endforeach  
           
         </ul>
@@ -60,7 +70,17 @@
         </ul>
    </div>
  </div>
-
+ 
+ <div class="row">
+   <div class="col-12">
+     @foreach ($companies as $company)
+     <h2>Total Customers of   {{ $company->name }}</h2>
+        @foreach ($company->customers as $customer)
+          <li>{{ $customer->name}}</li>    
+        @endforeach         
+     @endforeach
+   </div>
+ </div>
       
 </div>
 @endsection
