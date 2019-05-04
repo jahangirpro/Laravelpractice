@@ -8,7 +8,18 @@ use App\Company;
 
 class CustomerController extends Controller
 {
-    public function create(Request $request){
+
+    public function index(){
+        $customers = Customers::all();
+        return view('customer.index',compact('customers'));
+    }
+
+    public function create()
+    {
+        $companies = Company::all();
+        return view('customer.create',compact('companies'));
+    }
+    public function store(Request $request){
         //validation 
         $customer = request()->validate([
             'company_id' => 'required',
@@ -19,19 +30,7 @@ class CustomerController extends Controller
         ]);
 
         Customers::create($customer); // Must be used protected fillable in this class of guarded
-        return back();
+        return redirect('customer');
 
     }
-    public function list(){
-        
-        $ActiveCustomers = Customers::Active()->get();
-        $InactiveCustomers = Customers::Inactive()->get();
-        $ParttimeCustomers = Customers::Parttime()->get();
-
-        $companies = Company::all();
-        // dd($companies);
-        return view('internals.customers',compact('ActiveCustomers','InactiveCustomers','ParttimeCustomers','companies'));
-    }
-
-
 }

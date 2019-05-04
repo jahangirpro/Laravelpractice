@@ -16,22 +16,13 @@ class Customers extends Model
     {
         return $this->belongsTo(Company::class);
     }
-    
-    
-    
-    
-    public function scopeActive($query)//scope must be small letter
+    // Mutators - get+others (getSomething) & get must be small letter
+    public function getActiveAttribute($attribute)   
     {
-        return $query->where('active','1');
-    }
-
-    public function scopeInactive($query)
-    {
-        return $query->where('active','0');
-    }
-
-    public function scopeParttime($query)
-    {
-        return $query->where('active','2');
+        return [
+            1 => 'Active',
+            0 => 'Inactive',
+            2 =>'Part Time',
+        ][$attribute];
     }
 }

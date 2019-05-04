@@ -1,9 +1,9 @@
 @extends('master')
-@section('title','Customer List')
+@section('title','Add a new Customer')
 @section('content')
 <div class="container">
-    <b>Customer List ............ !!!</b>
-<form action="/customers" method="POST">
+    <h2>Add a new customer</h2>
+<form action="/customer" method="POST">
     @csrf
         <div class="form-group">
           <label for="exampleInputName">Name</label>
@@ -37,50 +37,6 @@
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
  </form>
-
- <div class="row">
-   <div class="col-4">
-     <h3>Active Customers </h3>
-      <ul>
-          @foreach ($ActiveCustomers as $activecustomer)
-                  <li>Name : {{ $activecustomer->name }} <span class="text-muted">({{ $activecustomer->company->name }})</span> </li>
-          @endforeach  
-          
-        </ul>
-   </div>
-
-   <div class="col-4">
-     <h3>Inactive Customers</h3>
-      <ul>
-          @foreach ($InactiveCustomers as $inactivecustomer)
-                  <li>Name : {{ $inactivecustomer->name }} <span class="text-muted">({{ $inactivecustomer->email }})</span> </li>
-          @endforeach  
-          
-        </ul>
-   </div>
-
-
-   <div class="col-4">
-     <h3>Part time Customers </h3>
-      <ul>
-          @foreach ($ParttimeCustomers as $parttimecustomer)
-                  <li>Name : {{ $parttimecustomer->name }} <span class="text-muted">({{ $parttimecustomer->email }})</span> </li>
-          @endforeach  
-          
-        </ul>
-   </div>
- </div>
- 
- <div class="row">
-   <div class="col-12">
-     @foreach ($companies as $company)
-     <h2>Total Customers of   {{ $company->name }}</h2>
-        @foreach ($company->customers as $customer)
-          <li>{{ $customer->name}}</li>    
-        @endforeach         
-     @endforeach
-   </div>
- </div>
       
 </div>
 @endsection
