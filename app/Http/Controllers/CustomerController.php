@@ -11,13 +11,13 @@ class CustomerController extends Controller
 
     public function index(){
         $customers = Customers::all();
-        return view('customer.index',compact('customers'));
+        return view('customers.index',compact('customers'));
     }
 
     public function create()
     {
         $companies = Company::all();
-        return view('customer.create',compact('companies'));
+        return view('customers.create',compact('companies'));
     }
     public function store(Request $request){
         //validation 
@@ -30,7 +30,14 @@ class CustomerController extends Controller
         ]);
 
         Customers::create($customer); // Must be used protected fillable in this class of guarded
-        return redirect('customer');
+        return redirect('customers');
 
     }
+    // Route model binding is the easiest way to fetch data
+    public function show(Customers $customer)
+    { 
+        return view('customers.show',compact('customer'));
+    } 
+
+ 
 }
