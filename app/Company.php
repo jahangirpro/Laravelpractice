@@ -9,6 +9,6 @@ class Company extends Model
     protected $guarded = [];
 
     public function customers(){
-        return $this->hasMany(Customers::class);
+        return $this->hasMany(Customer::class);
     }
 }

@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Customers;
+use App\Customer;
 use App\Company;
 
 class CustomerController extends Controller
 {
 
     public function index(){
-        $customers = Customers::all();
+        $customers = Customer::paginate(5);
         return view('customers.index',compact('customers'));
     }
 
@@ -22,22 +22,47 @@ class CustomerController extends Controller
     public function store(Request $request){
         //validation 
         $customer = request()->validate([
-            'company_id' => 'required',
             'name' => 'required|min:4',
             'email' => 'required|email|unique:customers',
             'active' => 'required',
+            'company_id' => 'required',
            
         ]);
 
-        Customers::create($customer); // Must be used protected fillable in this class of guarded
+        Customer::create($customer); // Must be used protected fillable in this class of guarded
         return redirect('customers');
 
     }
-    // Route model binding is the easiest way to fetch data
-    public function show(Customers $customer)
-    { 
-        return view('customers.show',compact('customer'));
-    } 
 
- 
+    public function show($customer)
+    {
+        $customer = Customer::where('id',$customer)->firstOrFail();
+        return view('customers.show',compact('customer'));
+    }
+
+    public function edit(Customer $customer)
+    {
+        
+        return view('customers.edit',compact('customer'));
+    }
+
+    public function update(Customer $customer)
+    {
+        $data = request()->validate([
+            'name' => 'required|min:4',
+            'email' => 'required|email',
+            'active' => 'required',
+            'company_id' => 'required',
+           
+        ]);
+        
+
+        $customer->update($data);  
+        return redirect('customers/'.$customer->id );
+    }
+    public function destroy(Customer $customer)
+    {
+        $customer->delete();
+        return redirect('customers');
+    }
 }
